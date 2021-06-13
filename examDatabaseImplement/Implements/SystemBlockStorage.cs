@@ -20,8 +20,8 @@ namespace examDatabaseImplement.Implements
             using (var context = new ExamDatabase())
             {
                 SystemBlock element = context.SystemBlocks.FirstOrDefault(rec => rec.Id == model.Id);
-                if(element != null)
-                { 
+                if (element != null)
+                {
                     context.SystemBlocks.Remove(element);
                     context.SaveChanges();
                 }
@@ -40,8 +40,7 @@ namespace examDatabaseImplement.Implements
             }
             using (var context = new ExamDatabase())
             {
-                var element = context.SystemBlocks
-                    .FirstOrDefault(rec => rec.Id == model.Id);
+                var element = context.SystemBlocks.FirstOrDefault(rec => rec.Id == model.Id);
                 return element != null ?
                     new SystemBlockViewModel
                     {
@@ -104,7 +103,7 @@ namespace examDatabaseImplement.Implements
             using (var context = new ExamDatabase())
             {
                 var element = context.SystemBlocks.FirstOrDefault(rec => rec.Id == model.Id);
-                if(element != null)
+                if (element != null)
                 {
                     throw new Exception("Элемент не найден");
                 }
