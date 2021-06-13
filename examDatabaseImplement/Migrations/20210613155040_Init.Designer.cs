@@ -10,8 +10,8 @@ using examDatabaseImplement;
 namespace examDatabaseImplement.Migrations
 {
     [DbContext(typeof(ExamDatabase))]
-    [Migration("20210613143803_upd2")]
-    partial class upd2
+    [Migration("20210613155040_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

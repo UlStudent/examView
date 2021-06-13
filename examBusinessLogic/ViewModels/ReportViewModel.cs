@@ -4,7 +4,7 @@ using System.Text;
 
 namespace examBusinessLogic.ViewModels
 {
-    class ReportViewModel
+    public class ReportViewModel
     {
         public string Brand { get; set; }
         public string ComponentName { get; set; }

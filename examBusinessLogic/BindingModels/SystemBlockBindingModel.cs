@@ -10,5 +10,7 @@ namespace examBusinessLogic.BindingModels
         public string Brand { get; set; }
         public string BlockType { get; set; }
         public DateTime DateCreate { get; set; }
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
     }
 }

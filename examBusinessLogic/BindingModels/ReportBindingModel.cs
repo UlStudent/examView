@@ -6,6 +6,9 @@ namespace examBusinessLogic.BindingModels
 {
     public class ReportBindingModel
     {
+        public string FileName { get; set; }
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
         public string Brand { get; set; }
         public string ComponentName { get; set; }
         public string Firm { get; set; }

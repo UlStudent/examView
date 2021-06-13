@@ -12,5 +12,7 @@ namespace examBusinessLogic.BindingModels
         public DateTime DateCreate { get; set; }
         public string Firm { get; set; }
         public int? SystemBlockId { get; set; }
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
     }
 }

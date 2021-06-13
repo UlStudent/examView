@@ -1,4 +1,5 @@
 ﻿using examBusinessLogic.BindingModels;
+using examBusinessLogic.HelperModels;
 using examBusinessLogic.Interfaces;
 using examBusinessLogic.ViewModels;
 using System;
@@ -21,7 +22,7 @@ namespace examBusinessLogic.BusinessLogic
         /// Получение списка компонент с указанием, в каких изделиях используются
         /// </summary>
         /// <returns></returns>104
-      
+
         /// <summary>
         /// Получение списка заказов за определенный период
         /// </summary>
@@ -29,33 +30,39 @@ namespace examBusinessLogic.BusinessLogic
         /// <returns></returns>
         public List<ReportViewModel> GetSysBlocks(ReportBindingModel model)
         {
-            return _systemBlockStorage.GetFilteredList(new SystemBlockBindingModel
+            return _componentStorage.GetFilteredList(new ComponentBindingModel
             {
-                Brand = model.Brand,
-                DateCreate = model.SystemBlockDateCreate
+                DateFrom = model.DateFrom,
+                DateTo = model.DateTo
             })
             .Select(x => new ReportViewModel
             {
-                Brand = x.Brand,
-                Firm = x.F,
-                SystemBlockDateCreate = x.DateCreate,
-                ComponentName = x.Sum,
-                ComponentDateCreate = x.Status
+                Brand = _systemBlockStorage.GetElement(new SystemBlockBindingModel
+                {
+                    Id = x.SystemBlockId
+                }).Brand,
+                Firm = x.Firm,
+                SystemBlockDateCreate = _systemBlockStorage.GetElement(new SystemBlockBindingModel
+                {
+                    Id = x.SystemBlockId
+                }).DateCreate,
+                ComponentName = x.Name,
+                ComponentDateCreate = x.DateCreate
             })
            .ToList();
         }
-       
+
+        [Obsolete]
         public void SaveOrdersToPdfFile(ReportBindingModel model)
         {
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
                 Title = "Список заказов",
-                DateFrom = model.DateFrom.Value,
-                DateTo = model.DateTo.Value,
-                Orders = GetOrders(model)
+                DateFrom = model.DateFrom,
+                DateTo = model.DateTo,
+                SystemBlocks = GetSysBlocks(model)
             });
         }
-
     }
 }

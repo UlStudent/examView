@@ -32,7 +32,7 @@ namespace examDatabaseImplement.Migrations
                     Price = table.Column<double>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
                     Firm = table.Column<string>(nullable: false),
-                    SystemBlockId = table.Column<int>(nullable: false)
+                    SystemBlockId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,7 +42,7 @@ namespace examDatabaseImplement.Migrations
                         column: x => x.SystemBlockId,
                         principalTable: "SystemBlocks",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
